@@ -41,6 +41,8 @@ const UploadAdv = () => {
   const [imageUrl, setImageUrl] = useState();
   const [formData, setFormData] = useState({});
 
+  
+
 
 
   const onFinish = (values) => {
@@ -62,6 +64,7 @@ const UploadAdv = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
     console.log(formData)
+
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
@@ -78,7 +81,8 @@ const UploadAdv = () => {
       getBase64(info.file.originFileObj, (url) => {
         setLoading(false);
         setImageUrl(url);
-        setFormData({ ...formData, url: imageUrl })
+        console.log(url);
+        setFormData({ ...formData, url: url })
       });
     }
   };
@@ -124,8 +128,8 @@ const UploadAdv = () => {
           )}
         </Upload>
         <Space />
-        <Form.Item name="note" label="Note" rules={[{ required: true }]}>
-          <Input onChange={(e) => setFormData({ ...formData, note: e.target.value })} />
+        <Form.Item name="description" label="Description" rules={[{ required: true }]}>
+          <Input onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
         </Form.Item>
         <Form.Item name="type" label="Type" rules={[{ required: true }]}>
           <Select onChange={(value) => setFormData({ ...formData, type: value })} placeholder="Select a option and change input text above" allowClear>
