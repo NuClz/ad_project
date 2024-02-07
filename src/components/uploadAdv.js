@@ -60,15 +60,51 @@ const UploadAdv = () => {
     setOpen(true);
   };
 
+  // const handleOk = () => {
+  //   setModalText('The modal will be closed after two seconds');
+  //   setConfirmLoading(true);
+  //   console.log(formData)
+
+  //   setTimeout(() => {
+  //     setOpen(false);
+  //     setConfirmLoading(false);
+  //   }, 2000);
+  // };
+
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
-    console.log(formData)
+    
+    // 将表单数据转换为JSON格式
+    const data = JSON.stringify({
+      description: formData.description,
+      type: formData.type,
+      advurl: imageUrl,
+    });
 
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
+    // 发送 POST 请求到服务器
+    fetch('http://localhost:8080/advertisements', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log(data);
+        setConfirmLoading(false);
+        setOpen(false);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+        setConfirmLoading(false);
+    });
   };
 
   const handleChange = (info) => {

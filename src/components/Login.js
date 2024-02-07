@@ -28,7 +28,7 @@ const Login = () => {
                 onFinish={handleLogin}
             >
                 <Form.Item
-                    name="username"
+                    name="adminId"
                     rules={[{ required: true, message: 'Please enter your admin ID!' }]}
                 >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Admin ID" />
