@@ -1,8 +1,8 @@
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Radio, Modal, Image, Form, Input, Select, Space } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { message, Upload } from 'antd';
+import { message, Upload, Avatar, List } from 'antd';
 
 const { Option } = Select;
 
@@ -40,8 +40,34 @@ const UploadAdv = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [formData, setFormData] = useState({});
+  const [data, setData] = useState([]);
 
-  
+  useEffect(() => {
+    // 在这里进行 GET 请求
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/advertisements', {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const jsonData = await response.json();
+      setData(jsonData);
+      console.log(jsonData);
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+  };
+
 
 
 
@@ -74,7 +100,7 @@ const UploadAdv = () => {
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);
-    
+
     // 将表单数据转换为JSON格式
     const data = JSON.stringify({
       description: formData.description,
@@ -84,27 +110,29 @@ const UploadAdv = () => {
 
     // 发送 POST 请求到服务器
     fetch('http://localhost:8080/advertisements', {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Content-Type': 'application/json'
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
-    .then(response => {
+      .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok');
         }
         return response.text();
-    })
-    .then(data => {
+      })
+      .then(data => {
         console.log(data);
+        // 更新数据源
+        fetchData();
         setConfirmLoading(false);
         setOpen(false);
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('There has been a problem with your fetch operation:', error);
         setConfirmLoading(false);
-    });
+      });
   };
 
   const handleChange = (info) => {
@@ -178,6 +206,19 @@ const UploadAdv = () => {
 
       </Modal>
 
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item, index) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={item.advurl} />}
+              title={<a>{item.description}</a>}
+              description={item.type}
+            />
+          </List.Item>
+        )}
+      />
     </>
   )
 }
