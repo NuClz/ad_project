@@ -1,19 +1,10 @@
 import { DownloadOutlined } from '@ant-design/icons';
-import { Button, Divider, Flex, Radio, Modal, Image, Form, Input, Select, Space } from 'antd';
+import { Button, Divider, Flex, Radio, Modal, Image, Form, Input, Select, Space, message, Upload, Avatar, List } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { message, Upload, Avatar, List } from 'antd';
+
 
 const { Option } = Select;
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -69,33 +60,10 @@ const UploadAdv = () => {
   };
 
 
-
-
-  const onFinish = (values) => {
-    console.log(values);
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-
   const showModal = () => {
     setOpen(true);
   };
 
-  // const handleOk = () => {
-  //   setModalText('The modal will be closed after two seconds');
-  //   setConfirmLoading(true);
-  //   console.log(formData)
-
-  //   setTimeout(() => {
-  //     setOpen(false);
-  //     setConfirmLoading(false);
-  //   }, 2000);
-  // };
 
   const handleOk = () => {
     setModalText('The modal will be closed after two seconds');
@@ -167,7 +135,7 @@ const UploadAdv = () => {
   return (
     <>
       <Button type="primary" icon={<DownloadOutlined />} onClick={showModal}>
-        Download
+        Upload Adv
       </Button>
       <Modal
         title="Title"
@@ -214,7 +182,7 @@ const UploadAdv = () => {
             <List.Item.Meta
               avatar={<Avatar src={item.advurl} />}
               title={<a>{item.description}</a>}
-              description={item.type}
+              description={"type of adv:"+item.type}
             />
           </List.Item>
         )}

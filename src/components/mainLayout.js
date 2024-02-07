@@ -13,6 +13,7 @@ import { Layout, Menu, theme } from 'antd';
 import ViewMembers from './viewMembers.js'
 import UploadAdv from './uploadAdv.js';
 import './mainLayout.css';
+import UploadVedio from './uploadVedio.js';
 //import Test from './components/uploadVedio.js';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -20,7 +21,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const items = [
   { key: '1', icon: <UserOutlined />, label: 'View Member', component: () => <ViewMembers/> },
   { key: '2', icon: <VideoCameraOutlined />, label: 'Collect Payment', component: () => <h1>Component 2</h1> },
-  { key: '3', icon: <UploadOutlined />, label: 'Upload Video', component: () => <h1>Component 3</h1> },
+  { key: '3', icon: <UploadOutlined />, label: 'Upload Video', component: () => <UploadVedio/> },
   { key: '4', icon: <BarChartOutlined />, label: 'Upload Adv', component: () => <UploadAdv/> },
 ];
 
