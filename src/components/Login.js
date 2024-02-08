@@ -4,15 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './Login.css';
+import { useAuth } from '../contexts/AuthContext';
+
 
 const Login = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async (values) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/login', values);
+            const response = await axios.post('http://localhost:8080/api/admin/login', values);
             console.log(response.data);
+            login();
             navigate('/home');
         } catch (error) {
             console.error('Login Failed:', error);
@@ -28,7 +32,7 @@ const Login = () => {
                 onFinish={handleLogin}
             >
                 <Form.Item
-                    name="adminId"
+                    name="id"
                     rules={[{ required: true, message: 'Please enter your admin ID!' }]}
                 >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Admin ID" />

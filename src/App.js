@@ -1,15 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login'; 
+import Login from './components/Login';
 import Home from './components/mainLayout';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Login />} /> // 根路径指向登录界面
-        <Route path="/home" element={<Home />} /> // “/home”路径指向应用的主布局
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home"
+            element={<ProtectedRoute>
+              <Home />
+            </ProtectedRoute>} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 };
