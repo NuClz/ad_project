@@ -20,7 +20,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
   { key: '1', icon: <UserOutlined />, label: 'View Member', component: () => <ViewMembers/> },
-  { key: '2', icon: <VideoCameraOutlined />, label: 'Collect Payment', component: () => <h1>Component 2</h1> },
+  // { key: '2', icon: <VideoCameraOutlined />, label: 'Collect Payment', component: () => <h1>Component 2</h1> },
   { key: '3', icon: <UploadOutlined />, label: 'Upload Video', component: () => <UploadVedio/> },
   { key: '4', icon: <BarChartOutlined />, label: 'Upload Adv', component: () => <UploadAdv/> },
 ];
