@@ -167,12 +167,12 @@ const UploadVideo = () => {
         </Form.Item>
         <Form.Item name="type" label="Type" rules={[{ required: true }]}>
           <Select onChange={(value) => setFormData({ ...formData, type: value })} placeholder="Select a option and change input text above" allowClear>
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
-            <Option value="5">5</Option>
-            <Option value="6">6</Option>
+            <Option value="1">Healthy Lose Weight</Option>
+            <Option value="2">Healthy Maintain Weight</Option>
+            <Option value="3">Healthy Gain Muscle</Option>
+            <Option value="4">Heart Disease</Option>
+            <Option value="5">Diabetes</Option>
+            <Option value="6">Heart Disease and Diabetes</Option>
           </Select>
         </Form.Item>
 

@@ -165,10 +165,10 @@ const UploadAdv = () => {
         </Form.Item>
         <Form.Item name="type" label="Type" rules={[{ required: true }]}>
           <Select onChange={(value) => setFormData({ ...formData, type: value })} placeholder="Select a option and change input text above" allowClear>
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
+            <Option value="1">For Young Man</Option>
+            <Option value="2">For Older Man</Option>
+            <Option value="3">For Young Woman</Option>
+            <Option value="4">For Older Woman</Option>
           </Select>
         </Form.Item>
 
