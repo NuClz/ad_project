@@ -1,3 +1,11 @@
+Default admin account:
+ID:1
+Password:password1
+ID:2
+Password:password2
+
+Because of the size limitation of the database, the uploaded image cannot be too large, 50Kb is an appropriate size.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
